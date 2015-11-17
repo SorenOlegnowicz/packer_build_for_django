@@ -19,6 +19,6 @@ The provisioners used are a remote shell to set up the python environment and ch
 Modify script.sh with the repository you wish to clone, and...
 
 #### SECOND:
-With your AWS credentials stored as environment variables run the following:
+With your AWS credentials stored as environment variables run the following in the command line:
 
 ```packer build...```

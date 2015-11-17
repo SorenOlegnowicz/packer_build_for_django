@@ -16,5 +16,10 @@
   "provisioners": [{
     "type": "shell",
     "script": "remote_shell.sh"
-  }]
+  },
+  {
+    "type": "chef-solo",
+    "cookbook_paths": ["cookbooks"],
+    "run_list": ["server_setup::default"]
+    }]
 }

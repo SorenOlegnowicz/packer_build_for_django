@@ -1,0 +1,32 @@
+upstream app_server_djangoapp {
+   server 127.0.0.1:8002 fail_timeout=0;
+}
+
+server {
+   #EC2 instance security group must be configured to accept http connections
+   listen 80;
+   server_name django_default;
+
+   access_log  /var/log/nginx/guni-access.log;
+   error_log  /var/log/nginx/guni-error.log info;
+
+   keepalive_timeout 5;
+
+   # path for static files
+   root /home/ubuntu/project/hashmarker/shortener/subjectivity/static;
+
+   location /static {
+       alias /home/ubuntu/project/hashmarker/shortener/subjectivity/static;
+   }
+   # handles requests
+   location / {
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header Host $http_host;
+       proxy_redirect off;
+
+       if (!-f $request_filename) {
+           proxy_pass http://app_server_djangoapp;
+           break;
+       }
+   }
+}
