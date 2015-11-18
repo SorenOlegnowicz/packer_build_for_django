@@ -1,5 +1,9 @@
 #!/bin/sh -x
 
+# The total number of changes to be made for this file is: 1
+# (1) The Clone URL for your github repository
+# Note: Please replace the brackets with the appropriate information.
+
 sleep 30
 sudo apt-get update
 sudo apt-get install -y git
@@ -12,6 +16,6 @@ pip install  django
 mkdir project
 cd project
 git init
-# Make sure the clone is done with https
-git remote add origin https://github.com/SorenOlegnowicz/urly-bird-lite.git
+# (1) Make sure the clone is done with https
+git remote add origin [clone_url]
 git pull origin master

@@ -1,3 +1,10 @@
+# The total number of changes to be made for this file is: 2
+# The location of this file on your server: /etc/init/virtualized.conf
+# (1) The project path to the directory containing your manage.py
+# (2) The name of your application (the directory containing your wsgi.py)
+# Note: Please replace the brackets with the appropriate information.
+
+
 description "default_django"
 
 start on (filesystem)
@@ -8,11 +15,11 @@ console log
 setuid ubuntu
 setgid ubuntu
 
-# change into the directory which contains the manage.py
-chdir /home/ubuntu/project/hashmarker/shortener
+# (1) change into the directory which contains the manage.py
+chdir /home/ubuntu/project/[project_path]
 
 env DEBUG=false
 
-# first connect to gunicorn in the virtualenv
-# then connect to the django application
-exec /home/ubuntu/virtualized/bin/gunicorn shortener.wsgi:application -b 127.0.0.1:8002 -w 4
+# This command first connects to gunicorn in the virtualenv
+# (2) and then connects to the django application
+exec /home/ubuntu/virtualized/bin/gunicorn [app_name].wsgi:application -b 127.0.0.1:8002 -w 4
